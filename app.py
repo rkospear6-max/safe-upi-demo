@@ -1,5 +1,17 @@
 import streamlit as st
 import pandas as pd
+import streamlit.components.v1 as components
+
+def play_voice_alert(message):
+    js = f"""
+    <script>
+        const speech = new SpeechSynthesisUtterance("{message}");
+        speech.rate = 1.0;
+        speech.pitch = 1.0;
+        window.speechSynthesis.speak(speech);
+    </script>
+    """
+    components.html(js, height=0)
 import time
 from datetime import datetime
 
@@ -114,6 +126,9 @@ with col1:
                     if is_fraud:
                         st.error("🚨 PAYMENT BLOCKED BY SAFE-AI SHIELD!")
                         st.warning(f"**Security Risk Factor:** {reason}")
+                        play_voice_alert("Warning! Payment blocked due to suspicious activity.")
+                        
+
                     else:
                         st.success("✅ Payment Successful! 🎉")
                         st.info(f"**Status:** {reason}")
