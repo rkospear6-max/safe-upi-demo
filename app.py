@@ -90,6 +90,8 @@ with col1:
         
         upi_id = st.text_input("Enter UPI ID (e.g., yourname@okaxis)", "raman@okicici")
         remark_text = st.text_input("Enter Transaction Remark / Note", "Grocery shopping")
+        is_fraud = False
+        reason = "Safe"
         
         if st.button("🔒 Pay Securely via UPI", type="primary"): 
             if not upi_id: # (ya jo bhi upi_id hai)
