@@ -44,3 +44,47 @@ SafeUPI is an intelligent, real-time UPI transaction simulator and security shie
         │                       │
         ▼                       ▼
  🚨 Block + Voice Alert    ✅ Success + Ballons
+
+ 
+📂 project directory structure
+safe-upi-demo/
+│
+├── app.py                 # Main Streamlit application script
+├── train.py               # Model training / extra script (Aapki nayi file)
+├── requirements.txt       # Python package dependencies
+└── README.md              # Project documentation
+
+🚀 Getting Started Locally
+Follow these steps to set up and run the project on your local machine:
+1. Clone the Repository
+git clone [https://github.com/your-username/safe-upi-demo.git](https://github.com/your-username/safe-upi-demo.git)
+cd safe-upi-demo
+2. Create a Virtual Environment (Recommended)
+python -m venv venv
+source venv/bin/activate   # On Windows use: venv\Scripts\activate
+3. Install Dependencies
+pip install -r requirements.txt
+4. Run the Streamlit App
+streamlit run app.py
+💡 How It Works (Logic Flow)
+Input Parameters: The user fills in the recipient UPI ID, transaction amount, transaction hour, frequency, distance, and custom remark notes.
+
+AI Shield Verification: Upon clicking "Pay Securely via UPI", the system runs an initial machine learning prediction based on behavioral metrics.
+
+Keyword Override: The application scans the transaction remark for social engineering and scam keywords. If a match is found, the is_fraud flag is overridden to True.
+
+Action & Feedback:
+
+If flagged as fraudulent, the payment is blocked (st.error), the risk factor is displayed, and an alert voice is triggered.
+
+If safe, a success message appears (st.success) with celebratory elements and confirmation audio.
+
+🚀 Future Enhancements
+Real-time Bank API Integration: Connecting with sandbox UPI gateways for live status checks.
+
+Advanced NLP Sentiment Analysis: Moving beyond keyword matching to contextual threat detection in remarks using transformer models.
+
+Multi-language Voice Support: Adding regional voice alerts (Hindi, Bengali, Tamil, etc.) for broader accessibility.
+
+🛡️ License
+This project is open-source and developed for educational, cybersecurity awareness, and hackathon purposes.
