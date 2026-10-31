@@ -89,6 +89,7 @@ with col1:
         distance_from_home = st.number_input("Distance from Home (km)", value=def_dist)
         
         upi_id = st.text_input("Enter UPI ID (e.g., yourname@okaxis)", "raman@okicici")
+        remark_text = st.text_input("Enter Transaction Remark / Note", "Grocery shopping")
         
         if st.button("🔒 Pay Securely via UPI", type="primary"):
             if not upi_id:
@@ -123,16 +124,24 @@ with col1:
                     
                     st.markdown("---")
                     
-                    if is_fraud:
+fraud_keywords = ["lottery", "prize", "urgent", "win", "gift", "kbc", "job"]
+is_remark_fraud = any(word in remark_text.lower() for word in fraud_keywords)
+
+
+if is_remark_fraud:
+    is_fraud = True
+    reason = "Suspicious keywords detected in remark!"
+if is_fraud:
                         st.error("🚨 PAYMENT BLOCKED BY SAFE-AI SHIELD!")
                         st.warning(f"**Security Risk Factor:** {reason}")
                         play_voice_alert("Warning! Payment blocked due to suspicious activity.")
                         
 
-                    else:
+else:
                         st.success("✅ Payment Successful! 🎉")
                         st.info(f"**Status:** {reason}")
                         st.balloons()
+                        play_voice_alert("Payment successful. Your transaction is safe.")
 
 with col2:
     st.subheader("📍 Live Geolocation Shield")
