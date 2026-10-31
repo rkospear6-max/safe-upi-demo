@@ -93,6 +93,8 @@ with col1:
         
         if st.button("🔒 Pay Securely via UPI", type="primary"): 
             is_fraud = False
+            reason = "Transaction looks safe."
+            
             if not upi_id:
                 st.warning("Kripya valid UPI ID darj karein!")
             else:
