@@ -97,19 +97,16 @@ with col1:
             else:
              with st.spinner("🤖 AI Shield analyzing behavioral biometrics & geolocation..."):
                time.sleep(0.8)
-            is_fraud, reason = predict_fraud(amount, hour, frequency, distance_from_home)
-            fraud_keywords = ["lottery", "prize", "urgent", "win", "gift", "kbc", "job"]
-            is_remark_fraud = any(word in remark_text.lower() for word in fraud_keywords)
-            if is_remark_fraud:
+               is_fraud, reason = predict_fraud(amount, hour, frequency, distance_from_home)
+               fraud_keywords = ["lottery", "prize", "urgent", "win", "gift", "kbc", "job"]
+               is_remark_fraud = any(word in remark_text.lower() for word in fraud_keywords)
+               if is_remark_fraud:
                 is_fraud = True
-                reason = "Suspicious keywords detected in remark!"
+               reason = "Suspicious keywords detected in remark!"
 
         current_time = datetime.now().strftime("%H:%M:%S")
         status_str = "BLOCKED (Fraud)" if is_fraud else "SUCCESS (Safe)"
-
             
-            
-        
         if not upi_id:
                 st.warning("Kripya valid UPI ID darj karein!")
         else:
